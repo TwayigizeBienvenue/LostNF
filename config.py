@@ -2,6 +2,12 @@
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "",        # your phpMyAdmin password
+    "password": "",        # Your/My phpMyAdmin password
+    "database": "lostfound_db"
+}
+DB_CONFIG = {
+    "host": "localhost",
+    "user": "root",
+    "password": "",        # Your/My phpMyAdmin password
     "database": "lostfound_db"
 }

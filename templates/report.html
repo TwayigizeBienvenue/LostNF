@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lost & Found Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="dashboard">
+    
+    <!-- Header -->
+    <header>
+      <h1>Lost & Found System</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Dashboard</div>
+      <ul>
+        <li><a href="/">🏠 Home</a></li>
+        <li><a href="/report" class="active">📝 Report Found Item</a></li>
+        <li><a href="/view">📋 View Items</a></li>
+        <li><a href="#">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <div class="form-card">
+        <h2>Report a Found Item</h2>
+        <form method="POST" action="/report" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Item Name:</label>
+            <input type="text" name="itemName" required>
+          </div>
+
+          <div class="form-group">
+            <label>Description:</label>
+            <textarea name="description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Category:</label>
+            <input type="text" name="category">
+          </div>
+
+          <div class="form-group">
+            <label>Found Location:</label>
+            <input type="text" name="foundLocation">
+          </div>
+
+          <div class="form-group">
+            <label>Date Found:</label>
+            <input type="date" name="dateFound">
+          </div>
+
+          <div class="form-group">
+            <label>Serial Number:</label>
+            <input type="text" name="serialNumber">
+          </div>
+
+          <div class="form-group">
+            <label>Reported By:</label>
+            <input type="text" name="reportedBy">
+          </div>
+
+          <div class="form-group">
+            <label>Contact Info:</label>
+            <input type="text" name="contactInfo">
+          </div>
+
+          <div class="form-group">
+            <label>Upload Photo:</label>
+            <input type="file" name="photo" accept="image/*" onchange="previewImage(event)">
+            <img id="preview" class="preview-img" alt="Image Preview">
+          </div>
+
+          <button type="submit">Submit Report</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const preview = document.getElementById('preview');
+      preview.src = URL.createObjectURL(event.target.files[0]);
+      preview.style.display = "block";
+    }
+  </script>
+</body>
+</html>

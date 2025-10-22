@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Reported Items</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+    }
+    .sidebar {
+      width: 220px;
+      background: #2c3e50;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 20px;
+      color: #ecf0f1;
+    }
+    .sidebar a {
+      display: block;
+      color: #ecf0f1;
+      text-decoration: none;
+      padding: 10px 15px;
+      margin: 8px 0;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .sidebar a:hover {
+      background: #34495e;
+    }
+    .main {
+      margin-left: 240px;
+      padding: 20px;
+    }
+    .main h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #2c3e50;
+      color: #fff;
+    }
+    tr:hover {
+      background: #f1f1f1;
+    }
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+    }
+    /* status badge styles */
+    .status {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      display: inline-block;
+    }
+    .status.pending {
+      background: #f39c12;
+      color: #fff;
+    }
+    .status.approved {
+      background: #27ae60;
+      color: #fff;
+    }
+    .status.rejected {
+      background: #c0392b;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Lost & Found</h2>
+    <a href="{{ url_for('index') }}">🏠 Home</a>
+    <a href="{{ url_for('report') }}">📝 Report Item</a>
+    <a href="{{ url_for('view') }}">📦 View Items</a>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <h1>📦 Reported Items</h1>
+
+    {% if items %}
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Category</th>
+          <th>Location Found</th>
+          <th>Date Found</th>
+          <th>Reported By</th>
+          <th>Contact Info</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.foundLocation }}</td>
+          <td>{{ item.dateFound }}</td>
+          <td>{{ item.reportedBy }}</td>
+          <td>{{ item.contactInfo }}</td>
+          <td>{{ item.description }}</td>
+          <td>
+            <span class="status {{ item.status|lower }}">
+              {{ item.status }}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <div class="no-data">🚫 No items have been reported yet.</div>
+    {% endif %}
+  </div>
+</body>
+</html>

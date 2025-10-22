@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lost & Found Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Lost & Found</h2>
+      <nav>
+        <a href="{{ url_for('index') }}">🏠 Home</a>
+        <a href="{{ url_for('report') }}">📝 Report Item</a>
+        <a href="{{ url_for('view') }}">📦 View Items</a>
+        <a href="{{ url_for('logout') }}">🚪 Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      
+      <!-- Top bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1>Welcome to the Lost & Found System</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="user-info">🔑 Logged in as User</span>
+        </div>
+      </header>
+
+      <!-- Page content -->
+      <section class="content">
+        <p class="intro-text">Manage lost and found items easily. Choose what you want to do:</p>
+        
+        <div class="buttons">
+          <a href="{{ url_for('report') }}" class="btn">➕ Report Lost Item</a>
+          <a href="{{ url_for('view') }}" class="btn btn-alt">🔍 View Items</a>
+        </div>
+      </section>
+      
+    </main>
+  </div>
+</body>
+</html>
